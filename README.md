@@ -99,3 +99,35 @@ You will collect these across the steps below. Make sure every one is set in bot
    - Save, then copy the preset name → `NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET`.
 
 ---
+
+## Step 5 — Generate an auth secret
+
+```bash
+openssl rand -base64 32
+```
+
+Copy the output into `AUTH_SECRET`. For local dev, also set `AUTH_URL=http://localhost:3000`.
+
+---
+
+## Step 6 — Create `.env.local`
+
+```bash
+cp .env.example .env.local
+```
+
+Open `.env.local` and fill in every value collected above. Don't forget to **add** the missing line:
+
+```env
+NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET="your-preset-name"
+```
+
+And set:
+
+```env
+NEXT_PUBLIC_APP_URL="http://localhost:3000"
+```
+
+For Monime, leave placeholder strings (e.g. `MONIME_API_KEY="placeholder"`).
+
+---
