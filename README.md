@@ -29,8 +29,8 @@ You will collect these across the steps below. Make sure every one is set in bot
 | `DATABASE_URL` | Postgres connection string | Neon (Step 2) |
 | `AUTH_SECRET` | NextAuth session encryption key | Generate with `openssl rand -base64 32` (Step 5) |
 | `AUTH_URL` | Base URL NextAuth redirects to | `http://localhost:3000` locally; your `https://*.vercel.app` URL in prod |
-| `AUTH_GOOGLE_ID` | Google OAuth client ID | Google Cloud Console (Step 3) |
-| `AUTH_GOOGLE_SECRET` | Google OAuth client secret | Google Cloud Console (Step 3) |
+| `AUTH_GOOGLE_ID` | Google OAuth client ID (optional) | Google Cloud Console (Step 3) — leave as placeholder to skip |
+| `AUTH_GOOGLE_SECRET` | Google OAuth client secret (optional) | Google Cloud Console (Step 3) — leave as placeholder to skip |
 | `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` | Cloudinary account name | Cloudinary dashboard (Step 4) |
 | `CLOUDINARY_API_KEY` | Cloudinary API key | Cloudinary dashboard (Step 4) |
 | `CLOUDINARY_API_SECRET` | Cloudinary API secret | Cloudinary dashboard (Step 4) |
@@ -71,7 +71,9 @@ You will collect these across the steps below. Make sure every one is set in bot
 
 ---
 
-## Step 3 — Create a Google OAuth client
+## Step 3 — Create a Google OAuth client (optional)
+
+> **Optional.** Skip this step if you only want email/password sign-in. The app still runs fine — just leave `AUTH_GOOGLE_ID` and `AUTH_GOOGLE_SECRET` as placeholder strings, and the Google sign-in button simply won't work. Come back and complete this step any time you want Google login enabled.
 
 1. Open https://console.cloud.google.com → create or pick a project.
 2. **APIs & Services → OAuth consent screen** → configure (External, your name/email is fine).
