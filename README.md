@@ -43,3 +43,18 @@ You will collect these across the steps below. Make sure every one is set in bot
 > **Note:** Monime is a future payment integration. Set the two `MONIME_*` vars to any non-empty placeholder string — the app will run fine without real keys.
 
 ---
+
+## Step 1 — Fork & clone
+
+1. Click **Fork** at the top right of this repo on GitHub.
+2. Clone your fork:
+   ```bash
+   git clone https://github.com/<your-username>/house-of-cohort.git
+   cd house-of-cohort
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+---
