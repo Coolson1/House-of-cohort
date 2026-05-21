@@ -70,3 +70,18 @@ You will collect these across the steps below. Make sure every one is set in bot
 4. Save it — this is your `DATABASE_URL`.
 
 ---
+
+## Step 3 — Create a Google OAuth client
+
+1. Open https://console.cloud.google.com → create or pick a project.
+2. **APIs & Services → OAuth consent screen** → configure (External, your name/email is fine).
+3. **APIs & Services → Credentials → Create Credentials → OAuth client ID**.
+4. Application type: **Web application**.
+5. Add **Authorized redirect URIs**:
+   - `http://localhost:3000/api/auth/callback/google`
+   - `https://<your-vercel-url>/api/auth/callback/google` ← add this after Step 9
+6. Click **Create** and copy:
+   - **Client ID** → `AUTH_GOOGLE_ID`
+   - **Client secret** → `AUTH_GOOGLE_SECRET`
+
+---
