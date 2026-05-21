@@ -85,3 +85,17 @@ You will collect these across the steps below. Make sure every one is set in bot
    - **Client secret** → `AUTH_GOOGLE_SECRET`
 
 ---
+
+## Step 4 — Create a Cloudinary account
+
+1. Sign up at https://cloudinary.com (free tier is fine).
+2. On the dashboard, copy:
+   - **Cloud name** → `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME`
+   - **API Key** → `CLOUDINARY_API_KEY`
+   - **API Secret** → `CLOUDINARY_API_SECRET`
+3. Create an unsigned upload preset:
+   - **Settings (gear icon) → Upload → Upload presets → Add upload preset**.
+   - **Signing mode:** Unsigned.
+   - Save, then copy the preset name → `NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET`.
+
+---
