@@ -173,3 +173,34 @@ Open http://localhost:3000 and verify:
 If any of these fail, double-check the matching env var.
 
 ---
+
+## Step 9 — Deploy to Vercel
+
+1. Push your fork to GitHub (`git push`).
+2. Go to https://vercel.com/new → **Import** your fork. Vercel auto-detects Next.js — accept the defaults.
+3. **Before the first deploy**, expand **Environment Variables** and add **every** variable from your `.env.local`, with these production tweaks:
+   - `AUTH_URL` → `https://<your-project>.vercel.app`
+   - `NEXT_PUBLIC_APP_URL` → same `https://<your-project>.vercel.app`
+4. Click **Deploy**. The first build takes 1–3 minutes.
+5. Once deployed, copy your Vercel URL and:
+   - If you set up Google OAuth, go back to **Google Cloud Console → Credentials** and add `https://<your-project>.vercel.app/api/auth/callback/google` to the OAuth client's authorized redirect URIs. Save.
+6. **Migrate and seed the production database.** The easiest path:
+   - Temporarily edit `.env.local` so `DATABASE_URL` points at your **production** Neon connection string.
+   - Run:
+     ```bash
+     npx prisma migrate deploy
+     npx prisma db seed
+     ```
+   - Restore `.env.local` to the local connection string when done.
+7. Visit your Vercel URL and confirm the catalog loads and sign-in works in production.
+
+---
+
+## Step 10 — Submit
+
+Send your instructor:
+
+1. The URL of your forked repo on GitHub.
+2. Your live Vercel deployment URL.
+
+---
