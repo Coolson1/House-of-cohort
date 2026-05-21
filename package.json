@@ -2,6 +2,8 @@
   "name": "house-of-cohort",
   "version": "0.1.0",
   "private": true,
+  "author": "Saidu Bundu-Kamara, Christex Foundation",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
