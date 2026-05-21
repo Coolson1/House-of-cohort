@@ -204,3 +204,27 @@ Send your instructor:
 2. Your live Vercel deployment URL.
 
 ---
+
+## Troubleshooting
+
+| Problem | Likely cause |
+|---|---|
+| `PrismaClientInitializationError` on startup | `DATABASE_URL` missing or wrong — verify the **pooled** Neon URL |
+| Google sign-in returns `redirect_uri_mismatch` | The exact callback URL is not in Google Cloud's authorized redirect URIs |
+| `NEXTAUTH_URL` warning | Make sure `AUTH_URL` matches the URL you're actually visiting |
+| Admin image uploads fail with `Upload preset not found` | `NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET` missing or not set to **Unsigned** mode |
+| Build fails on Vercel with missing env var | Add it under **Project Settings → Environment Variables** and redeploy |
+
+---
+
+## Useful scripts
+
+```bash
+npm run dev          # local dev server
+npm run build        # production build
+npm run start        # run the production build locally
+npm run lint         # eslint
+npx prisma studio    # browse the database in your browser
+npx tsx scripts/inspect-state.ts   # dump cart/wishlist/review state
+npx tsx scripts/reset-carts.ts     # clear carts, wishlists, reviews
+```
