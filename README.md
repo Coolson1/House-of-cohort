@@ -131,3 +131,43 @@ NEXT_PUBLIC_APP_URL="http://localhost:3000"
 For Monime, leave placeholder strings (e.g. `MONIME_API_KEY="placeholder"`).
 
 ---
+
+## Step 7 — Set up the database
+
+Apply the migrations and seed sample data:
+
+```bash
+npx prisma migrate deploy
+npx prisma db seed
+```
+
+This creates 7 perfume categories, 18+ products with variants, 5 Sierra Leone delivery zones, and one admin user:
+
+- **Email:** `admin@houseofcohort.com`
+- **Password:** `Admin@1234`
+
+> Change this password before doing anything real with the deployment.
+
+To browse the database visually:
+
+```bash
+npx prisma studio
+```
+
+---
+
+## Step 8 — Run locally
+
+```bash
+npm run dev
+```
+
+Open http://localhost:3000 and verify:
+
+- The home page and product catalog load with seeded perfumes.
+- You can sign in with Google.
+- You can sign in as the admin using the seeded credentials and reach the admin pages.
+
+If any of these fail, double-check the matching env var.
+
+---
