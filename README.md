@@ -58,3 +58,15 @@ You will collect these across the steps below. Make sure every one is set in bot
    ```
 
 ---
+
+## Step 2 — Provision a Neon Postgres database
+
+1. Go to https://neon.tech and sign up (free tier is fine).
+2. Create a new project — any region close to you is OK.
+3. From the **Connection Details** panel, copy the **pooled** connection string. It looks like:
+   ```
+   postgresql://USER:PASSWORD@HOST-pooler.region.aws.neon.tech/dbname?sslmode=require
+   ```
+4. Save it — this is your `DATABASE_URL`.
+
+---
