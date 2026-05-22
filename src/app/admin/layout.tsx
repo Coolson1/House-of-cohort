@@ -18,8 +18,8 @@ export default async function AdminLayout({
         role={session.user.role}
         userEmail={session.user.email ?? ""}
       />
-      <main className="md:pl-64 min-h-screen">
-        <div className="px-6 py-8 md:px-10 md:py-10 max-w-7xl mx-auto">
+      <main className="lg:pl-64 min-h-screen">
+        <div className="px-4 sm:px-6 py-6 sm:py-8 lg:px-10 lg:py-10 max-w-7xl mx-auto">
           {children}
         </div>
       </main>

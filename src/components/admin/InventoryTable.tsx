@@ -88,16 +88,16 @@ export function InventoryTable({ rows }: { rows: Row[] }) {
   return (
     <div className="space-y-4">
       {selected.size > 0 && (
-        <div className="flex flex-wrap items-center gap-3 rounded-md border border-brand-gold/40 bg-brand-gold/5 p-3 text-sm">
-          <span className="text-brand-black">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3 rounded-md border border-brand-gold/40 bg-brand-gold/5 p-2 sm:p-3 text-xs sm:text-sm">
+          <span className="text-brand-black whitespace-nowrap">
             {selected.size} selected
           </span>
           <Input
             type="number"
-            placeholder="Delta (e.g. -5 or 10)"
+            placeholder="Delta"
             value={delta}
             onChange={(e) => setDelta(e.target.value)}
-            className="w-40"
+            className="w-24 sm:w-40"
           />
           <Button
             type="button"
@@ -117,22 +117,21 @@ export function InventoryTable({ rows }: { rows: Row[] }) {
         </div>
       )}
 
-      <div className="rounded-md border bg-white">
+      <div className="rounded-md border bg-white overflow-x-auto">
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-10">
-                <Checkbox
+              <TableHead className="w-10">  <Checkbox
                   checked={allSelected}
                   onCheckedChange={(v) => toggleAll(Boolean(v))}
                   aria-label="Select all"
                 />
               </TableHead>
-              <TableHead>Product</TableHead>
-              <TableHead>Size</TableHead>
-              <TableHead>SKU</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Stock</TableHead>
+              <TableHead className="min-w-[150px]">Product</TableHead>
+              <TableHead className="min-w-[80px]">Size</TableHead>
+              <TableHead className="min-w-[80px]">SKU</TableHead>
+              <TableHead className="min-w-[100px]">Status</TableHead>
+              <TableHead className="min-w-[120px]">Stock</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

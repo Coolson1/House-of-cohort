@@ -134,7 +134,7 @@ export function CheckoutForm({
   }
 
   return (
-    <div className="grid gap-12 lg:grid-cols-[1fr_400px] lg:gap-20">
+    <div className="grid gap-8 sm:gap-12 md:grid-cols-[1fr_320px] lg:grid-cols-[1fr_400px] md:gap-16 lg:gap-20">
       {showCancelledBanner && (
         <div className="border-l-2 border-brand-rose bg-brand-rose/10 px-5 py-4 font-serif text-base italic text-ink/80 lg:col-span-2">
           Your previous payment was cancelled. The bag is kept — please try again

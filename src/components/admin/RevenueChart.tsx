@@ -15,7 +15,7 @@ export type RevenuePoint = { day: string; total: number };
 
 export function RevenueChart({ data }: { data: RevenuePoint[] }) {
   return (
-    <div className="h-72 w-full">
+    <div className="h-48 sm:h-64 lg:h-72 w-full">
       <ResponsiveContainer>
         <LineChart data={data} margin={{ top: 12, right: 16, left: 0, bottom: 8 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#e5e5e5" />

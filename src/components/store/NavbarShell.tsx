@@ -37,8 +37,8 @@ export function NavbarShell({
       }`}
     >
       <div
-        className={`mx-auto flex max-w-[1400px] items-center justify-between gap-6 px-5 transition-[height] duration-300 sm:px-8 lg:px-12 ${
-          scrolled ? "h-14" : "h-20"
+        className={`mx-auto flex max-w-[1400px] items-center justify-between gap-4 sm:gap-6 px-4 sm:px-5 md:px-8 lg:px-12 transition-[height] duration-300 ${
+          scrolled ? "h-12 sm:h-14" : "h-16 sm:h-20"
         }`}
       >
         {/* left nav */}

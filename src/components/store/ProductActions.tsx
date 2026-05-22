@@ -143,12 +143,12 @@ export function ProductActions({
         </div>
       </div>
 
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+      <div className="flex flex-col gap-2 sm:gap-3">
         <button
           type="button"
           disabled={selected.stock === 0 || isAdding}
           onClick={addToCart}
-          className="group relative inline-flex flex-1 items-center justify-center gap-3 overflow-hidden rounded-full bg-ink px-8 py-4 text-[11px] uppercase tracking-[0.32em] text-parchment transition-all duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] hover:bg-brand-gold hover:text-ink disabled:opacity-40 disabled:hover:bg-ink disabled:hover:text-parchment"
+          className="group relative inline-flex w-full items-center justify-center gap-2 sm:gap-3 overflow-hidden rounded-full bg-ink px-6 sm:px-8 py-3 sm:py-4 text-[10px] sm:text-[11px] uppercase tracking-[0.28em] sm:tracking-[0.32em] text-parchment transition-all duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] hover:bg-brand-gold hover:text-ink disabled:opacity-40 disabled:hover:bg-ink disabled:hover:text-parchment"
         >
           <span className="relative z-10">
             {selected.stock === 0
@@ -170,7 +170,7 @@ export function ProductActions({
           onClick={toggleWishlist}
           aria-label={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
           className={cn(
-            "inline-flex items-center justify-center gap-2 rounded-full border px-6 py-4 text-[11px] uppercase tracking-[0.32em] transition-all duration-300",
+            "inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border px-4 sm:px-6 py-3 sm:py-4 text-[10px] sm:text-[11px] uppercase tracking-[0.28em] sm:tracking-[0.32em] transition-all duration-300",
             wishlisted
               ? "border-brand-gold bg-brand-gold/10 text-brand-gold"
               : "border-ink/25 text-ink/75 hover:border-ink hover:text-ink",

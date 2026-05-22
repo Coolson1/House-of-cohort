@@ -25,14 +25,14 @@ export function OrderStatusChart({ data }: { data: StatusSlice[] }) {
 
   if (filtered.length === 0) {
     return (
-      <div className="flex h-72 items-center justify-center text-sm text-muted-foreground">
+      <div className="flex h-48 sm:h-64 lg:h-72 items-center justify-center text-sm text-muted-foreground">
         No orders yet
       </div>
     );
   }
 
   return (
-    <div className="h-72 w-full">
+    <div className="h-48 sm:h-64 lg:h-72 w-full">
       <ResponsiveContainer>
         <PieChart>
           <Pie

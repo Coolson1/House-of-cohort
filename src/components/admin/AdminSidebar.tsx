@@ -116,14 +116,14 @@ export function AdminSidebar({
   return (
     <>
       {/* Desktop sidebar */}
-      <aside className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0 md:bg-brand-black md:text-brand-white md:border-r md:border-brand-gold/20">
+      <aside className="hidden lg:flex lg:w-64 lg:flex-col lg:fixed lg:inset-y-0 lg:bg-brand-black lg:text-brand-white lg:border-r lg:border-brand-gold/20">
         <SidebarHeader />
         <NavList role={role} />
         <SidebarFooter email={userEmail} role={role} />
       </aside>
 
       {/* Mobile trigger */}
-      <div className="md:hidden flex items-center justify-between border-b border-brand-gold/20 bg-brand-black px-4 py-3 text-brand-white">
+      <div className="lg:hidden flex items-center justify-between border-b border-brand-gold/20 bg-brand-black px-4 py-3 text-brand-white">
         <Link href="/admin" className="font-serif text-lg text-brand-gold">
           House of Cohort
         </Link>
@@ -141,7 +141,7 @@ export function AdminSidebar({
           </SheetTrigger>
           <SheetContent
             side="left"
-            className="w-72 bg-brand-black text-brand-white border-brand-gold/20 p-0 flex flex-col"
+            className="w-full sm:w-72 bg-brand-black text-brand-white border-brand-gold/20 p-0 flex flex-col"
           >
             <SheetTitle className="sr-only">Admin navigation</SheetTitle>
             <SidebarHeader />

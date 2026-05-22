@@ -32,7 +32,7 @@ export function CategoryShowcase({ categories }: { categories: Category[] }) {
   const items = categories.slice(0, 6);
 
   return (
-    <section className="relative bg-parchment py-24 lg:py-32">
+    <section className="relative bg-parchment py-16 sm:py-24 lg:py-32">
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-12">
         <Reveal className="mb-16 flex flex-col items-baseline justify-between gap-6 sm:flex-row">
           <div>

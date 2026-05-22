@@ -67,7 +67,7 @@ export function CartItemRow({ item }: { item: CartItemViewData }) {
   }
 
   return (
-    <li className="grid grid-cols-[120px_1fr] gap-6 border-b border-ink/10 py-8 last:border-b-0 sm:grid-cols-[140px_1fr]">
+    <li className="grid grid-cols-[100px_1fr] sm:grid-cols-[120px_1fr] md:grid-cols-[140px_1fr] gap-4 sm:gap-6 border-b border-ink/10 py-6 sm:py-8 last:border-b-0">
       <Link
         href={`/products/${item.productSlug}`}
         className="group relative aspect-[4/5] overflow-hidden bg-parchment-deep"
@@ -91,7 +91,7 @@ export function CartItemRow({ item }: { item: CartItemViewData }) {
           <div>
             <Link
               href={`/products/${item.productSlug}`}
-              className="font-display text-2xl font-light text-ink transition-colors hover:text-brand-gold sm:text-3xl"
+              className="font-display text-lg sm:text-2xl md:text-3xl font-light text-ink transition-colors hover:text-brand-gold"
             >
               {item.productName}
             </Link>

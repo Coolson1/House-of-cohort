@@ -70,14 +70,15 @@ export function ImageGallery({
       </div>
 
       {images.length > 1 && (
-        <div className="flex flex-wrap gap-3">
-          {images.slice(0, 6).map((src, i) => (
-            <button
-              key={src + i}
-              type="button"
-              onClick={() => setActive(i)}
-              aria-label={`View plate ${i + 1}`}
-              className="group relative aspect-square w-20 overflow-hidden bg-parchment-deep"
+        <div className="overflow-x-auto">
+          <div className="flex gap-2 sm:gap-3">
+            {images.slice(0, 6).map((src, i) => (
+              <button
+                key={src + i}
+                type="button"
+                onClick={() => setActive(i)}
+                aria-label={`View plate ${i + 1}`}
+                className="group relative aspect-square w-16 sm:w-20 flex-shrink-0 overflow-hidden bg-parchment-deep"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -93,8 +94,9 @@ export function ImageGallery({
               {i === active && (
                 <span className="absolute inset-0 ring-1 ring-inset ring-brand-gold/60" />
               )}
-            </button>
-          ))}
+              </button>
+            ))}
+          </div>
         </div>
       )}
     </div>
