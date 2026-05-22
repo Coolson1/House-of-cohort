@@ -276,7 +276,7 @@ export default async function ProductDetailPage({
           </Reveal>
 
           <div>
-            {session?.user ? (
+            {session?.user?.id ? (
               existingReview ? (
                 <div className="mb-10 border border-brand-gold/40 bg-brand-gold/8 p-6">
                   <p className="text-[10px] uppercase tracking-[0.4em] text-brand-gold">

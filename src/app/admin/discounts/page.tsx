@@ -16,7 +16,7 @@ import { CouponActiveToggle } from "@/components/admin/CouponActiveToggle";
 
 export default async function AdminDiscountsPage() {
   const session = await auth();
-  if (session?.user.role !== "ADMIN") redirect("/admin");
+  if (session?.user?.role !== "ADMIN") redirect("/admin");
 
   const coupons = await prisma.coupon.findMany({
     orderBy: [{ isActive: "desc" }, { code: "asc" }],

@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode, Suspense } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
 
 const NAV_LINKS = [
   { href: "/products", label: "Collection" },
@@ -9,6 +10,7 @@ const NAV_LINKS = [
   { href: "/products?category=floral", label: "Floral" },
   { href: "/products?category=amber", label: "Amber" },
 ];
+
 
 export function NavbarShell({
   cartCount,
@@ -108,26 +110,69 @@ export function NavbarShell({
   );
 }
 
-function NavLink({
+function NavLink(props: { href: string; label: string; compact?: boolean }) {
+  return (
+    <Suspense fallback={<NavLinkInner {...props} searchParams={null} />}>
+      <NavLinkWithSearchParams {...props} />
+    </Suspense>
+  );
+}
+
+function NavLinkWithSearchParams(props: { href: string; label: string; compact?: boolean }) {
+  const searchParams = useSearchParams();
+  return <NavLinkInner {...props} searchParams={searchParams} />;
+}
+
+function NavLinkInner({
   href,
   label,
   compact = false,
+  searchParams,
 }: {
   href: string;
   label: string;
   compact?: boolean;
+  searchParams: ReturnType<typeof useSearchParams> | null;
 }) {
+  const pathname = usePathname();
+
+  let isActive = false;
+  if (searchParams) {
+    if (href.includes("?")) {
+      const [path, query] = href.split("?");
+      const params = new URLSearchParams(query);
+      const pathMatches = pathname === path;
+      const paramsMatch = Array.from(params.entries()).every(
+        ([key, val]) => searchParams.get(key) === val
+      );
+      isActive = pathMatches && paramsMatch;
+    } else {
+      isActive = pathname === href;
+    }
+  } else {
+    // Fallback during SSR or loading: match path only
+    isActive = pathname === href.split("?")[0];
+  }
+
   return (
     <Link
       href={href}
-      className={`group/nav relative text-ink/75 transition-colors duration-300 hover:text-ink ${
+      className={`group/nav relative transition-colors duration-300 ${
+        isActive ? "text-brand-gold font-medium" : "text-ink/75 hover:text-ink"
+      } ${
         compact
           ? "text-[10px] uppercase tracking-[0.28em]"
           : "text-[11px] uppercase tracking-[0.34em]"
       }`}
     >
       {label}
-      <span className="absolute -bottom-1 left-0 h-px w-full origin-right scale-x-0 bg-brand-gold transition-transform duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover/nav:origin-left group-hover/nav:scale-x-100" />
+      <span
+        className={`absolute -bottom-1 left-0 h-px w-full bg-brand-gold transition-transform duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] ${
+          isActive
+            ? "scale-x-100 origin-left"
+            : "scale-x-0 origin-right group-hover/nav:origin-left group-hover/nav:scale-x-100"
+        }`}
+      />
     </Link>
   );
 }

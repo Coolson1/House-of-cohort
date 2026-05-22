@@ -13,7 +13,7 @@ async function loadHeaderState() {
 
   const cartCount = await getCartItemCount({
     userId: session?.user?.id ?? null,
-    sessionId: session?.user ? null : guestSessionId,
+    sessionId: session?.user?.id ? null : guestSessionId,
   });
 
   return { session, cartCount };
@@ -22,19 +22,21 @@ async function loadHeaderState() {
 export async function Navbar() {
   const { session, cartCount } = await loadHeaderState();
 
-  const userSlot = session?.user ? (
+  const userSlot = session?.user?.id ? (
     <UserMenu
       email={session.user.email ?? ""}
       name={session.user.name}
       role={session.user.role}
     />
   ) : (
-    <Link
-      href="/auth/signin"
-      className="hidden text-[11px] uppercase tracking-[0.3em] text-ink/75 transition-colors hover:text-brand-gold sm:inline-block"
-    >
-      Sign in
-    </Link>
+    <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] sm:gap-3 sm:text-[11px] sm:tracking-[0.3em]">
+      <Link
+        href="/auth/signin"
+        className="text-ink/75 transition-colors hover:text-brand-gold"
+      >
+        Sign in
+      </Link>
+    </div>
   );
 
   return <NavbarShell cartCount={cartCount} userSlot={userSlot} />;

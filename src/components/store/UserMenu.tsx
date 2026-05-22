@@ -6,6 +6,7 @@ import { signOut } from "next-auth/react";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -36,16 +37,18 @@ export function UserMenu({ email, name, role }: Props) {
         align="end"
         className="w-60 border-ink/15 bg-parchment-soft p-2 text-ink"
       >
-        <DropdownMenuLabel className="px-3 py-3">
-          <div className="flex flex-col">
-            <span className="font-display text-base font-light text-ink">
-              {name ?? "Bonjour"}
-            </span>
-            <span className="mt-0.5 text-[10px] uppercase tracking-[0.32em] text-ink/55">
-              {email}
-            </span>
-          </div>
-        </DropdownMenuLabel>
+        <DropdownMenuGroup>
+          <DropdownMenuLabel className="px-3 py-3">
+            <div className="flex flex-col">
+              <span className="font-display text-base font-light text-ink">
+                {name ?? "Bonjour"}
+              </span>
+              <span className="mt-0.5 text-[10px] uppercase tracking-[0.32em] text-ink/55">
+                {email}
+              </span>
+            </div>
+          </DropdownMenuLabel>
+        </DropdownMenuGroup>
         <DropdownMenuSeparator className="bg-ink/10" />
         <DropdownMenuItem
           render={<Link href="/account" />}

@@ -53,7 +53,7 @@ export default async function CheckoutSuccessPage({
     );
   }
 
-  const isGuest = !session?.user || order.userId !== session.user.id;
+  const isGuest = !session?.user?.id || order.userId !== session.user.id;
 
   return (
     <div className="relative isolate overflow-hidden pb-32 pt-16 lg:pt-24">

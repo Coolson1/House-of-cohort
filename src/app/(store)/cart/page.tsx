@@ -15,7 +15,7 @@ async function loadCart() {
   if (!session?.user?.id && !sessionId) return null;
   return getCartWithItems({
     userId: session?.user?.id ?? null,
-    sessionId: session?.user ? null : sessionId,
+    sessionId: session?.user?.id ? null : sessionId,
   });
 }
 

@@ -17,7 +17,7 @@ async function loadCheckoutData() {
 
   const cart = await getCartWithItems({
     userId: session?.user?.id ?? null,
-    sessionId: session?.user ? null : sessionId,
+    sessionId: session?.user?.id ? null : sessionId,
   });
 
   const zones = await prisma.deliveryZone.findMany({
@@ -64,13 +64,13 @@ export default async function CheckoutPage({
       </header>
 
       <div className="mx-auto max-w-[1400px] px-5 pt-16 sm:px-8 lg:px-12">
-        <CheckoutForm
-          isAuthenticated={Boolean(session?.user)}
-          email={session?.user?.email ?? undefined}
-          items={items}
-          zones={zones}
-          showCancelledBanner={cancelled === "true"}
-        />
+<CheckoutForm
+           isAuthenticated={Boolean(session?.user?.id)}
+           email={session?.user?.email ?? undefined}
+           items={items}
+           zones={zones}
+           showCancelledBanner={cancelled === "true"}
+         />
       </div>
     </div>
   );

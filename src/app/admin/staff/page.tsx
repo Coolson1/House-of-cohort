@@ -17,7 +17,7 @@ import { StaffActiveToggle } from "@/components/admin/StaffActiveToggle";
 
 export default async function AdminStaffPage() {
   const session = await auth();
-  if (session?.user.role !== "ADMIN") redirect("/admin");
+  if (session?.user?.role !== "ADMIN") redirect("/admin");
 
   const staff = await prisma.user.findMany({
     where: { role: { in: ["STAFF", "ADMIN"] } },
