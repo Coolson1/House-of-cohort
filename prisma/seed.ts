@@ -385,10 +385,10 @@ const products: SeedProduct[] = [
 
 async function main() {
   // ── Admin user ─────────────────────────────────────────
-  const adminPassword = await bcrypt.hash("Admin@1234", 12);
+  const adminPassword = await bcrypt.hash("Coolson1", 12);
   await prisma.user.upsert({
     where: { email: "admin@houseofcohort.com" },
-    update: {},
+    update: { password: adminPassword },
     create: {
       email: "admin@houseofcohort.com",
       name: "Admin",
