@@ -280,12 +280,12 @@ Create a file named `.env.local` at the project root with these keys:
 DATABASE_URL="postgresql://..."
 
 # NextAuth — generate secret with: openssl rand -base64 32
-AUTH_SECRET="your-generated-secret"
-AUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="your-generated-secret"
+NEXTAUTH_URL="http://localhost:3000"
 
 # Google OAuth — from Google Cloud Console → Credentials
-AUTH_GOOGLE_ID="your-google-client-id"
-AUTH_GOOGLE_SECRET="your-google-client-secret"
+GOOGLE_CLIENT_ID="your-google-client-id"
+GOOGLE_CLIENT_SECRET="your-google-client-secret"
 
 # Cloudinary — from Cloudinary dashboard
 NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="your-cloud-name"
@@ -798,8 +798,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   pages:   { signIn: "/auth/signin" },
   providers: [
     Google({
-      clientId:     process.env.AUTH_GOOGLE_ID!,
-      clientSecret: process.env.AUTH_GOOGLE_SECRET!,
+      clientId:     process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
     Credentials({
       name: "credentials",
@@ -1787,7 +1787,7 @@ Follow the prompts. After the project is linked:
 1. Go to the Vercel dashboard → your project → Settings → Environment Variables
 2. Add all variables from `.env.local` (with production values)
 3. Update these specific values for production:
-   - `AUTH_URL` → `https://your-domain.vercel.app`
+   - `NEXTAUTH_URL` → `https://your-domain.vercel.app`
    - `NEXT_PUBLIC_APP_URL` → `https://your-domain.vercel.app`
 4. In Google Cloud Console → OAuth credentials → add `https://your-domain.vercel.app/api/auth/callback/google` to authorised redirect URIs
 5. After the first deploy, run the production migration:

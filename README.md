@@ -27,10 +27,10 @@ You will collect these across the steps below. Make sure every one is set in bot
 | Variable | What it's for | Where to get it |
 |---|---|---|
 | `DATABASE_URL` | Postgres connection string | Neon (Step 2) |
-| `AUTH_SECRET` | NextAuth session encryption key | Generate with `openssl rand -base64 32` (Step 5) |
-| `AUTH_URL` | Base URL NextAuth redirects to | `http://localhost:3000` locally; your `https://*.vercel.app` URL in prod |
-| `AUTH_GOOGLE_ID` | Google OAuth client ID (optional) | Google Cloud Console (Step 3) — leave as placeholder to skip |
-| `AUTH_GOOGLE_SECRET` | Google OAuth client secret (optional) | Google Cloud Console (Step 3) — leave as placeholder to skip |
+| `NEXTAUTH_SECRET` | NextAuth session encryption key | Generate with `openssl rand -base64 32` (Step 5) |
+| `NEXTAUTH_URL` | NextAuth base URL | `http://localhost:3000` locally; your `https://*.vercel.app` URL in prod |
+| `GOOGLE_CLIENT_ID` | Google OAuth client ID (optional) | Google Cloud Console (Step 3) — leave as placeholder to skip |
+| `GOOGLE_CLIENT_SECRET` | Google OAuth client secret (optional) | Google Cloud Console (Step 3) — leave as placeholder to skip |
 | `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` | Cloudinary account name | Cloudinary dashboard (Step 4) |
 | `CLOUDINARY_API_KEY` | Cloudinary API key | Cloudinary dashboard (Step 4) |
 | `CLOUDINARY_API_SECRET` | Cloudinary API secret | Cloudinary dashboard (Step 4) |
@@ -73,7 +73,7 @@ You will collect these across the steps below. Make sure every one is set in bot
 
 ## Step 3 — Create a Google OAuth client (optional)
 
-> **Optional.** Skip this step if you only want email/password sign-in. The app still runs fine — just leave `AUTH_GOOGLE_ID` and `AUTH_GOOGLE_SECRET` as placeholder strings, and the Google sign-in button simply won't work. Come back and complete this step any time you want Google login enabled.
+> **Optional.** Skip this step if you only want email/password sign-in. The app still runs fine — just leave `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` as placeholder strings, and the Google sign-in button simply won't work. Come back and complete this step any time you want Google login enabled.
 
 1. Open https://console.cloud.google.com → create or pick a project.
 2. **APIs & Services → OAuth consent screen** → configure (External, your name/email is fine).
@@ -83,8 +83,8 @@ You will collect these across the steps below. Make sure every one is set in bot
    - `http://localhost:3000/api/auth/callback/google`
    - `https://<your-vercel-url>/api/auth/callback/google` ← add this after Step 9
 6. Click **Create** and copy:
-   - **Client ID** → `AUTH_GOOGLE_ID`
-   - **Client secret** → `AUTH_GOOGLE_SECRET`
+   - **Client ID** → `GOOGLE_CLIENT_ID`
+   - **Client secret** → `GOOGLE_CLIENT_SECRET`
 
 ---
 
@@ -108,7 +108,7 @@ You will collect these across the steps below. Make sure every one is set in bot
 openssl rand -base64 32
 ```
 
-Copy the output into `AUTH_SECRET`. For local dev, also set `AUTH_URL=http://localhost:3000`.
+Copy the output into `NEXTAUTH_SECRET`. For local dev, also set `NEXTAUTH_URL=http://localhost:3000`.
 
 ---
 
@@ -179,7 +179,7 @@ If any of these fail, double-check the matching env var.
 1. Push your fork to GitHub (`git push`).
 2. Go to https://vercel.com/new → **Import** your fork. Vercel auto-detects Next.js — accept the defaults.
 3. **Before the first deploy**, expand **Environment Variables** and add **every** variable from your `.env.local`, with these production tweaks:
-   - `AUTH_URL` → `https://<your-project>.vercel.app`
+   - `NEXTAUTH_URL` → `https://<your-project>.vercel.app`
    - `NEXT_PUBLIC_APP_URL` → same `https://<your-project>.vercel.app`
 4. Click **Deploy**. The first build takes 1–3 minutes.
 5. Once deployed, copy your Vercel URL and:
@@ -211,7 +211,7 @@ Send your instructor:
 |---|---|
 | `PrismaClientInitializationError` on startup | `DATABASE_URL` missing or wrong — verify the **pooled** Neon URL |
 | Google sign-in returns `redirect_uri_mismatch` | The exact callback URL is not in Google Cloud's authorized redirect URIs |
-| `NEXTAUTH_URL` warning | Make sure `AUTH_URL` matches the URL you're actually visiting |
+| `NEXTAUTH_URL` warning | Make sure `NEXTAUTH_URL` matches the URL you're actually visiting |
 | Admin image uploads fail with `Upload preset not found` | `NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET` missing or not set to **Unsigned** mode |
 | Build fails on Vercel with missing env var | Add it under **Project Settings → Environment Variables** and redeploy |
 

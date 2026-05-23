@@ -1,5 +1,5 @@
 import NextAuth, { type Session } from "next-auth";
-import Google from "next-auth/providers/google";
+import GoogleProvider from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import bcrypt from "bcryptjs";
@@ -7,14 +7,46 @@ import { NextResponse } from "next/server";
 import type { Role } from "@/generated/prisma/enums";
 import { prisma } from "./prisma";
 
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+const NEXTAUTH_SECRET = process.env.NEXTAUTH_SECRET;
+const NEXTAUTH_URL = process.env.NEXTAUTH_URL;
+
+if (!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET) {
+  console.warn(
+    "Google OAuth credentials are missing. Set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET in your environment.",
+  );
+}
+
+if (
+  GOOGLE_CLIENT_ID?.includes("google_client_id_placeholder") ||
+  GOOGLE_CLIENT_SECRET?.includes("google_client_secret_placeholder")
+) {
+  console.warn(
+    "Google OAuth uses placeholder credentials. Replace GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET with your real Google OAuth client values.",
+  );
+}
+
+if (!NEXTAUTH_SECRET) {
+  console.warn(
+    "NextAuth secret is missing. Set NEXTAUTH_SECRET in your environment.",
+  );
+}
+
+if (!NEXTAUTH_URL) {
+  console.warn(
+    "NextAuth URL is missing. Set NEXTAUTH_URL in your environment.",
+  );
+}
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma),
   session: { strategy: "jwt" },
   pages: { signIn: "/auth/signin" },
   providers: [
-    Google({
-      clientId: process.env.AUTH_GOOGLE_ID!,
-      clientSecret: process.env.AUTH_GOOGLE_SECRET!,
+    GoogleProvider({
+      clientId: GOOGLE_CLIENT_ID!,
+      clientSecret: GOOGLE_CLIENT_SECRET!,
     }),
     Credentials({
       name: "credentials",
@@ -61,6 +93,30 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         session.user.role = token.role as Role;
       }
       return session;
+    },
+  },
+  events: {
+    async signIn({ user, account }) {
+      console.info("NextAuth signIn", {
+        email: user?.email,
+        provider: account?.provider,
+      });
+    },
+  },
+  logger: {
+    error(error) {
+      // Log full error with stack and possible cause for easier debugging
+      console.error("NextAuth logger error", error);
+      if (error && (error as any).stack) console.error((error as any).stack);
+      if (error && (error as any).cause) console.error("cause:", (error as any).cause);
+    },
+    warn(code) {
+      console.warn("NextAuth logger warn", code);
+    },
+    debug(code) {
+      if (process.env.NODE_ENV !== "production") {
+        console.debug("NextAuth logger debug", code);
+      }
     },
   },
 });
