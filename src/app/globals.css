@@ -150,3 +150,73 @@
     @apply font-sans;
   }
 }
+
+/* Fragrance category animation keyframes */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(201, 168, 76, 0.3); }
+  50% { box-shadow: 0 0 45px rgba(201, 168, 76, 0.5); }
+}
+
+@keyframes bounce-subtle {
+  0%, 100% { transform: scale(1) translateY(0); }
+  50% { transform: scale(1.02) translateY(-2px); }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes rotate-amber {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(5deg); }
+}
+
+@keyframes texture-shift {
+  0% { background-position: 0 0; }
+  100% { background-position: 100% 100%; }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 2.5s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+.animate-rotate-amber {
+  animation: rotate-amber 3s ease-in-out infinite alternate;
+}
+
+/* Prefers reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-glow-pulse,
+  .animate-bounce-subtle,
+  .animate-shimmer,
+  .animate-rotate-amber {
+    animation: none;
+  }
+  
+  .group-hover\:animate-float,
+  .group-hover\:animate-glow-pulse,
+  .group-hover\:animate-bounce-subtle,
+  .group-hover\:animate-shimmer,
+  .group-hover\:animate-rotate-amber {
+    animation: none;
+  }
+}

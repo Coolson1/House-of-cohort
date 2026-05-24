@@ -137,7 +137,7 @@ export default async function ProductDetailPage({
         />
 
         <div className="lg:col-span-7">
-          <ImageGallery images={product.images} name={product.name} />
+          <ImageGallery images={product.images} name={product.name} categorySlug={product.category?.slug ?? null} />
         </div>
 
         <div className="space-y-9 lg:col-span-5 lg:pt-6">

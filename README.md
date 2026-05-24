@@ -145,9 +145,6 @@ npx prisma db seed
 
 This creates 7 perfume categories, 18+ products with variants, 5 Sierra Leone delivery zones, and one admin user:
 
-- **Email:** `admin@houseofcohort.com`
-- **Password:** `Coolson1`
-
 > Change this password before doing anything real with the deployment.
 
 To browse the database visually:

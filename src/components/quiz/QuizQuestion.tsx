@@ -21,9 +21,9 @@ export function QuizQuestion({
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="mb-12"
+        className="mb-8 sm:mb-12"
       >
-        <span className="text-[10px] uppercase tracking-[0.5em] text-brand-gold">
+         <span className="text-[9px] uppercase tracking-[0.45em] text-brand-gold sm:text-[10px] sm:tracking-[0.5em]">
           Question {questionId} of {questions.length}
         </span>
       </motion.div>
@@ -34,7 +34,7 @@ export function QuizQuestion({
          </h2>
        </RevealItem>
 
-      <RevealStagger className="mt-12 grid gap-4 sm:grid-cols-2" stagger={0.1}>
+       <RevealStagger className="mt-10 grid gap-3 sm:gap-4 sm:grid-cols-2 sm:mt-12" stagger={0.1}>
         {question.options.map((option) => (
           <motion.div
             key={option.value}
@@ -46,7 +46,7 @@ export function QuizQuestion({
               variant="goldOutline"
               size="xl"
               onClick={() => onSelect(option.value)}
-              className="w-full justify-start px-8 py-6 text-left transition-all duration-500 hover:bg-brand-gold hover:text-ink"
+              className="w-full justify-start px-6 py-5 text-left text-base transition-all duration-500 hover:bg-brand-gold hover:text-ink sm:px-8 sm:py-6 sm:text-lg"
             >
               <span className="font-display text-lg">{option.label}</span>
             </Button>

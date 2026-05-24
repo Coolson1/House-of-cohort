@@ -54,13 +54,13 @@ export function QuizResult({ answers, userId }: { answers: QuizAnswer[]; userId:
 
   return (
     <div className="bg-parchment pb-32">
-      <header className="border-b border-ink/10 bg-parchment-soft pb-12 pt-16 lg:pt-24">
+      <header className="border-b border-ink/10 bg-parchment-soft pb-10 pt-10 sm:pt-12 sm:pb-12 lg:pt-24 lg:pb-12">
         <div className="mx-auto max-w-[1200px] px-5 sm:px-8 lg:px-12">
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
-            className="text-[10px] uppercase tracking-[0.5em] text-brand-gold"
+            className="text-[9px] uppercase tracking-[0.45em] text-brand-gold sm:text-[10px] sm:tracking-[0.5em]"
           >
             Your olfactory identity
           </motion.p>
@@ -78,7 +78,7 @@ export function QuizResult({ answers, userId }: { answers: QuizAnswer[]; userId:
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="mt-6 max-w-2xl font-serif text-lg leading-relaxed text-ink/70"
+              className="mt-4 font-serif text-base leading-relaxed text-ink/70 sm:mt-6 sm:max-w-2xl sm:text-lg"
             >
               {description.description}
             </motion.p>
@@ -86,27 +86,27 @@ export function QuizResult({ answers, userId }: { answers: QuizAnswer[]; userId:
         </div>
       </header>
 
-      <div className="mx-auto mt-16 max-w-[1200px] px-5 sm:px-8 lg:px-12">
+      <div className="mx-auto mt-12 max-w-[1200px] px-5 sm:mt-16 sm:px-8 lg:px-12">
         {loading ? (
-          <div className="flex flex-col items-center py-24 text-center">
-            <p className="font-display text-2xl italic text-ink/65">Curating your selection...</p>
+          <div className="flex flex-col items-center py-16 text-center sm:py-24">
+            <p className="font-display text-xl italic text-ink/65 sm:text-2xl">Curating your selection...</p>
           </div>
         ) : (
           <>
             {error && (
-              <div className="flex flex-col items-center py-24 text-center text-destructive">
-                <p className="font-display text-2xl italic">{error}</p>
+              <div className="flex flex-col items-center py-16 text-center text-destructive sm:py-24">
+                <p className="font-display text-xl italic sm:text-2xl">{error}</p>
               </div>
             )}
             {!error && recommendations.length > 0 && (
-              <div className="space-y-16">
-                <div className="flex items-center gap-3">
-                  <p className="text-[10px] uppercase tracking-[0.4em] text-brand-gold">
+              <div className="space-y-12 sm:space-y-14 md:space-y-16">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <p className="text-[9px] uppercase tracking-[0.4em] text-brand-gold sm:text-[10px] sm:tracking-[0.4em]">
                     Recommended for you
                   </p>
                   <span className="inline-block h-px flex-1 bg-ink/15" />
                 </div>
-                <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                 <div className="grid gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3">
                   {recommendations.map((product) => (
                     <motion.div
                       key={product.id}
@@ -126,7 +126,7 @@ export function QuizResult({ answers, userId }: { answers: QuizAnswer[]; userId:
                           )}
                         </div>
                         <div className="mt-4">
-                          <h3 className="font-display text-xl text-ink transition-colors group-hover:text-brand-gold">
+                          <h3 className="font-display text-lg text-ink transition-colors group-hover:text-brand-gold sm:text-xl">
                             {product.name}
                           </h3>
                           {product.description && (
@@ -142,8 +142,8 @@ export function QuizResult({ answers, userId }: { answers: QuizAnswer[]; userId:
               </div>
             )}
             {!error && recommendations.length === 0 && (
-              <div className="flex flex-col items-center py-24 text-center">
-                <p className="font-display text-2xl italic text-ink/65">
+              <div className="flex flex-col items-center py-16 text-center sm:py-24">
+                <p className="font-display text-xl italic text-ink/65 sm:text-2xl">
                   No perfumes found for your category. Please try again or explore our collections.
                 </p>
               </div>

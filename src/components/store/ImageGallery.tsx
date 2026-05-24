@@ -1,18 +1,23 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 import { ParallaxImage } from "@/components/motion/ParallaxImage";
+import { PerfumeCursor } from "@/components/store/PerfumeCursor";
+import { getFragranceHoverClasses, getOverlayClasses, getAnimationClass, getShimmerOverlayClass } from "@/lib/fragranceStyles";
 
 export function ImageGallery({
   images,
   name,
+  categorySlug,
 }: {
   images: string[];
   name: string;
+  categorySlug?: string | null;
 }) {
   const [active, setActive] = useState(0);
+  const imageContainerRef = useRef<HTMLDivElement>(null);
 
   if (images.length === 0) {
     return (
@@ -35,7 +40,8 @@ export function ImageGallery({
   return (
     <div className="space-y-6">
       <div
-        className="relative aspect-[3/4] overflow-hidden bg-parchment-deep shadow-[0_30px_70px_-40px_rgba(26,24,20,0.4)]"
+        ref={imageContainerRef}
+        className="group relative aspect-[3/4] overflow-hidden bg-parchment-deep shadow-[0_30px_70px_-40px_rgba(26,24,20,0.4)] cursor-none"
         style={{
           borderTopLeftRadius: "100% 60%",
           borderTopRightRadius: "100% 60%",
@@ -43,6 +49,13 @@ export function ImageGallery({
           borderBottomRightRadius: "8px",
         }}
       >
+        <PerfumeCursor containerRef={imageContainerRef} />
+        <div className={getOverlayClasses(categorySlug)} />
+        {getShimmerOverlayClass(categorySlug) && (
+          <div className={getShimmerOverlayClass(categorySlug)}>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+          </div>
+        )}
         <AnimatePresence mode="wait">
           <motion.div
             key={images[active]}
@@ -50,7 +63,7 @@ export function ImageGallery({
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.02 }}
             transition={{ duration: 0.6, ease: [0.65, 0, 0.35, 1] }}
-            className="absolute inset-0"
+            className={`absolute inset-0 ${getFragranceHoverClasses(categorySlug)} ${getAnimationClass(categorySlug)}`}
           >
             <ParallaxImage amount={4} className="size-full">
               {/* eslint-disable-next-line @next/next/no-img-element */}

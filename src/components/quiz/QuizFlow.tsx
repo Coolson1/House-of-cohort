@@ -36,7 +36,7 @@ export function QuizFlow({ userId }: { userId: string }) {
       {state === "intro" && <QuizIntro onStart={handleStart} />}
 
       {state === "question" && (
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-8 lg:px-12 pt-16">
+        <div className="mx-auto max-w-[1200px] px-5 sm:px-8 sm:pt-16 lg:px-12 pt-12">
           <QuizQuestion questionId={currentQuestion + 1} onSelect={handleAnswer} />
         </div>
       )}
@@ -61,14 +61,14 @@ function LoadingScreen() {
         className="text-center"
       >
         <motion.p
-          className="font-display text-2xl text-brand-gold"
+          className="font-display text-xl text-brand-gold sm:text-2xl"
           animate={{ opacity: [0.4, 1, 0.4] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
           Analyzing your olfactory identity
         </motion.p>
         <motion.div
-          className="mt-8 h-px w-48 bg-gradient-to-r from-transparent via-brand-gold to-transparent"
+          className="mt-6 h-px w-32 bg-gradient-to-r from-transparent via-brand-gold to-transparent sm:mt-8 sm:w-48"
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 2, ease: "easeInOut" }}
