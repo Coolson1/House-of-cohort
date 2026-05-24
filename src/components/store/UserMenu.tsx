@@ -68,6 +68,12 @@ export function UserMenu({ email, name, role }: Props) {
         >
           Wishlist
         </DropdownMenuItem>
+        <DropdownMenuItem
+           render={<Link href="/dashboard/find-your-scent" />}
+          className="text-[11px] uppercase tracking-[0.28em] text-ink/80 focus:bg-parchment-deep focus:text-ink"
+        >
+           Find Your Scent
+        </DropdownMenuItem>
         {role !== "CUSTOMER" && (
           <>
             <DropdownMenuSeparator className="bg-ink/10" />

@@ -48,6 +48,7 @@ export default async function AccountPage() {
               <NavRow active>Profile</NavRow>
               <NavRow href="/account/orders">Orders</NavRow>
               <NavRow href="/wishlist">Wishlist</NavRow>
+               <NavRow href="/dashboard/find-your-scent">Find Your Scent</NavRow>
             </nav>
           </aside>
 
