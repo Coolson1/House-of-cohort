@@ -41,16 +41,16 @@ export function QuizIntro({ onStart }: { onStart: () => void }) {
       </header>
 
       <div className="mx-auto mt-12 max-w-[1200px] px-5 sm:mt-16 sm:px-8 lg:mt-20 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="text-center"
-        >
-          <Button variant="gold" size="xl" onClick={onStart}>
-            Begin Experience
-          </Button>
-        </motion.div>
+         <motion.div
+           initial={{ opacity: 0, y: 20 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ delay: 0.3, duration: 0.6 }}
+           className="text-center"
+         >
+           <Button variant="gold" onClick={onStart} className="w-full px-4 py-3 sm:px-6 sm:py-4 text-sm sm:text-base lg:text-lg whitespace-nowrap sm:whitespace-normal shrink">
+             Begin Experience
+           </Button>
+         </motion.div>
       </div>
     </div>
   );

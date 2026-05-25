@@ -34,25 +34,25 @@ export function QuizQuestion({
          </h2>
        </RevealItem>
 
-       <RevealStagger className="mt-10 grid gap-3 sm:gap-4 sm:grid-cols-2 sm:mt-12" stagger={0.1}>
-        {question.options.map((option) => (
-          <motion.div
-            key={option.value}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Button
-              variant="goldOutline"
-              size="xl"
-              onClick={() => onSelect(option.value)}
-              className="w-full justify-start px-6 py-5 text-left text-base transition-all duration-500 hover:bg-brand-gold hover:text-ink sm:px-8 sm:py-6 sm:text-lg"
-            >
-              <span className="font-display text-lg">{option.label}</span>
-            </Button>
-          </motion.div>
-        ))}
-      </RevealStagger>
+        <RevealStagger className="mt-10 grid gap-3 sm:gap-4 sm:grid-cols-2 sm:mt-12" stagger={0.1}>
+         {question.options.map((option) => (
+           <motion.div
+             key={option.value}
+             initial={{ opacity: 0, y: 20 }}
+             animate={{ opacity: 1, y: 0 }}
+             transition={{ duration: 0.5 }}
+           >
+             <Button
+               variant="goldOutline"
+               size="xl"
+               onClick={() => onSelect(option.value)}
+               className="w-full justify-start px-4 py-3 text-left transition-all duration-500 hover:bg-brand-gold hover:text-ink sm:px-6 sm:py-4 lg:px-8 lg:py-6"
+             >
+               <span className="font-display text-sm sm:text-base lg:text-lg">{option.label}</span>
+             </Button>
+           </motion.div>
+         ))}
+       </RevealStagger>
     </div>
   );
 }
